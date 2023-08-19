@@ -20,7 +20,6 @@ class PostAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(posts[position])
-//        holder.bind(post)
     }
     override fun getItemCount(): Int = posts.size
 
@@ -37,11 +36,8 @@ class PostAdapter : RecyclerView.Adapter<PostViewHolder>() {
 class PostViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
-//        binding.titleTextView.text = post.translation_id
-//        binding.bodyTextView.text = post.translation_name
-
-        binding.post = post
-        binding.executePendingBindings()
+        binding.post = post // bind post model class
+        binding.executePendingBindings() // pending data binding  are executed immediately and the UI update
     }
 }
 

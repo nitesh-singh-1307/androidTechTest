@@ -34,18 +34,17 @@ class PostViewModelTest {
     private lateinit var repository: PostRepository
     private lateinit var viewModel: PostViewModel
     private lateinit var testDispatcher: TestCoroutineDispatcher
-    private lateinit var endPoint:String
-    private lateinit var testCoroutineScope:TestCoroutineScope
+    private lateinit var endPoint: String
+    private lateinit var testCoroutineScope: TestCoroutineScope
 
 
 //    private lateinit var mockObserver: Observer<LiveData<Post>>
 
     @Before
     fun setUp() {
-//        MockitoAnnotations.initMocks(this)
         MockitoAnnotations.openMocks(this)
         Dispatchers.setMain(Dispatchers.Unconfined)
-testDispatcher = TestCoroutineDispatcher()
+        testDispatcher = TestCoroutineDispatcher()
         testCoroutineScope = TestCoroutineScope(testDispatcher)
         repository = mock(PostRepository::class.java)
         viewModel = PostViewModel(repository)
@@ -54,7 +53,7 @@ testDispatcher = TestCoroutineDispatcher()
     }
 
     @Test
-    fun fetchPosts() = testDispatcher.runBlockingTest{
+    fun fetchPosts() = testDispatcher.runBlockingTest {
         // Arrange
         val reference = "123"
         val verses = listOf(Verse("1", "Book", 1, 1, "Text"))
@@ -68,9 +67,9 @@ testDispatcher = TestCoroutineDispatcher()
 
         Mockito.`when`(repository.getPosts(endPoint)).thenReturn(post)
 
-        // Act
+        // test fetchPosts method in viewModel and pass endPoint Param
         viewModel.fetchPosts(endPoint)
-        verify(repository).getPosts(endPoint)
+        verify(repository).getPosts(endPoint) // TDD verify repository getPosts() method
 
         // Assert
 //        val liveDataValue = LiveDataTestUtil.getValue(viewModel.posts)
@@ -82,8 +81,9 @@ testDispatcher = TestCoroutineDispatcher()
         Dispatchers.resetMain() // Reset the Main dispatcher after the test
         testDispatcher.cleanupTestCoroutines()
     }
+
     @After
-    fun cleanup(){
+    fun cleanup() {
         testCoroutineScope.cleanupTestCoroutines()
     }
 }

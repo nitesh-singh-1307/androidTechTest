@@ -29,7 +29,7 @@ class BookListActivity : AppCompatActivity() {
         val viewModelFactory = ViewModelFactory(repository)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(PostViewModel::class.java)
-        viewModel.fetchPosts(endPoint)
+        viewModel.fetchPosts(endPoint) // Provide the endPoint Param
 
 
         binding.viewModel = viewModel
@@ -37,9 +37,7 @@ class BookListActivity : AppCompatActivity() {
         binding.adapter = adapter
 
         viewModel.posts.observe(this, Observer {
-//            adapter. = it
-            adapter.setPosts(listOf(it))
-
+            adapter.setPosts(listOf(it)) // Observer Post model value pass in adapter convert by list
             Log.d("TAG","checkIt:::::$it")
         })
 

@@ -13,7 +13,10 @@ import kotlinx.coroutines.launch
 
 class PostViewModel(private val repository: PostRepository) : ViewModel() {
 
+    // Define a MutableLiveData for posts
     private val _posts = MutableLiveData<Post>()
+
+    // Define a LiveData for posts
     val posts: LiveData<Post> = _posts
 
 

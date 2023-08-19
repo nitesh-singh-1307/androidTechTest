@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <!-- Import your ViewModel class -->
         <variable
             name="viewModel"
             type="com.example.myapplication.viewModels.PostViewModel" />
-
+        <!-- Import your adapter class -->
         <variable
             name="adapter"
             type="com.example.myapplication.view.adapters.PostAdapter" />
